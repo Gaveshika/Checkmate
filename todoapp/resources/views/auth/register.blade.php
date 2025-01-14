@@ -44,8 +44,12 @@
       <label for="floatingInput">Full Name</label>
     </div>
     <div class="form-floating">
-      <input name="email "type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input name="email "type="email" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
     </div>
 
     <div class="form-check text-start my-3">

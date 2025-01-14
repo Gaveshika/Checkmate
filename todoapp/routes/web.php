@@ -11,4 +11,4 @@ Route::get('/', function () {
 Route::get('login', [AuthManager::class, 'login']) -> name(name:"login");
 Route::post('login', [AuthManager::class, 'loginPost']) ->name(name:"login.post");
 Route::get('register', [AuthManager::class, 'register']) -> name(name:"register");
-Route::get('register', [AuthManager::class, 'registerPost']) -> name(name:"register.post");
+Route::post('register', [AuthManager::class, 'registerPost']) -> name(name:"register.post");
