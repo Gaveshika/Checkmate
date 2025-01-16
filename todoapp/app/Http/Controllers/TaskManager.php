@@ -10,4 +10,12 @@ class TaskManager extends Controller
     {
         return view('tasks.add');
     }
+
+    function addTaskPost(Request $request){
+        $request->validate([
+           'title' => 'required' ,
+           'description' => 'required',
+           'deadline' => 'required',
+        ]);
+    }
 }
