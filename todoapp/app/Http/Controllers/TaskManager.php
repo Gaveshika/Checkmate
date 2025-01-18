@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class TaskManager extends Controller
 {
     function listTask(){
-        $tasks = Tasks::all();
+        $tasks = Tasks::where("status", NULL)->paginate(3);
         return view("welcome" , compact('tasks'));
     }
     function addTask()
@@ -38,4 +38,11 @@ class TaskManager extends Controller
        }
        return redirect(route("home")) ->with("error", "Error occured while updating, try again");
     }
+
+    function deleteTaskStatus($id){
+        if( Tasks::where('id', $id)->delete()){
+          return redirect(route("home")) ->with("success", "Task Deleted");
+        }
+        return redirect(route("home")) ->with("error", "Error occured while deleting, try again");
+     }
 }
