@@ -29,6 +29,11 @@ class AuthManager extends Controller
             return redirect(route(name: "login"))->with("error", "Invalid email or Password");
     }
 
+    function logout(){
+        Auth::logout();
+        return redirect(route("login"));
+    }
+
     function register(){
         return view(view:'auth.register');
     }
