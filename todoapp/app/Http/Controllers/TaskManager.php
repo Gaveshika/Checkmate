@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class TaskManager extends Controller
 {
     function listTask(){
-        $tasks = Tasks::where("status", NULL)->paginate(3);
+        $tasks = Tasks::where("user_id" , auth()->user()->id)
+        ->where("status", NULL)->paginate(3);
         return view("welcome" , compact('tasks'));
     }
     function addTask()
@@ -26,6 +27,7 @@ class TaskManager extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
         $task->deadline = $request->deadline;
+        $task->user_id = auth()->user()->id;
         if($task->save()){
             return redirect(route("home"))->with("success", "Task added successfully!");
         }
@@ -33,14 +35,16 @@ class TaskManager extends Controller
     }
 
     function updateTaskStatus($id){
-       if( Tasks::where('id', $id)->update(['status' => "completed"])){
+       if( Tasks::where("user_id" , auth()->user()->id)
+       ->where('id', $id)->update(['status' => "completed"])){
          return redirect(route("home")) ->with("success", "Task Completed");
        }
        return redirect(route("home")) ->with("error", "Error occured while updating, try again");
     }
 
     function deleteTaskStatus($id){
-        if( Tasks::where('id', $id)->delete()){
+        if( Tasks::where("user_id" , auth()->user()->id)
+        ->where('id', $id)->delete()){
           return redirect(route("home")) ->with("success", "Task Deleted");
         }
         return redirect(route("home")) ->with("error", "Error occured while deleting, try again");
