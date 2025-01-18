@@ -24,7 +24,7 @@
         <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
           <div class="d-flex justify-content-between">
             <strong class="text-gray-dark">{{$task->title}} | {{$task->deadline}}</strong>
-            <a href="#">Follow</a>
+            <a href="{{route('task.status.update', $task->id)}}" class="btn btn-successs">Completed</a>
           </div>
           <span class="d-block">{{$task->description}}</span>
         </div>
